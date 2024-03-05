@@ -3,7 +3,7 @@ import Navlink from "@/components/navlink";
 
 export function Sidebar({ className }: { className?: string }) {
   return (
-    <div className={cn("space-y-4 py-4", className)}>
+    <div className={cn("space-y-4 py-4 border-r border-slate-100", className)}>
       <div className="px-3 py-2">
         <div className="space-y-1">
           <Navlink href="/my-profile" className="w-full justify-start">
@@ -131,7 +131,7 @@ export function Sidebar({ className }: { className?: string }) {
         </div>
       </div>
       <div className="px-3 py-2">
-        <Navlink href="/log out" className="w-full justify-start">
+        <Navlink href="/login" className="w-full justify-start">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"

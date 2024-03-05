@@ -17,7 +17,7 @@ const Navlink = ({
   return (
     <Link href={href ?? ""}>
       <Button
-        variant={href === pathname ? "secondary" : "ghost"}
+        variant={pathname.startsWith(href) ? "secondary" : "ghost"}
         className={className}
       >
         {children}

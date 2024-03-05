@@ -32,7 +32,7 @@ const Page = () => {
           </CardHeader>
           <CardContent className={"flex justify-center"}>
             <Button>
-              <Label>See the ressources</Label>
+              <Label>See the details</Label>
             </Button>
           </CardContent>
         </Card>
