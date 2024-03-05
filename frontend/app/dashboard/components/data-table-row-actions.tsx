@@ -17,7 +17,7 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { labels, taskSchema } from "@/app/courses/components/columns";
+import { labels, taskSchema } from "@/app/dashboard/components/columns";
 
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>;

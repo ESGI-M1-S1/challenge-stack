@@ -1,25 +1,10 @@
 "use client";
 
 import React from "react";
-import { Sidebar } from "@/app/chat/sidebar";
+import { Sidebar } from "@/components/sidebar";
 import { Chat } from "@/app/chat/components/chat";
 import { useRouter, useSearchParams } from "next/navigation";
 import { userData } from "@/app/chat/data";
-
-const playlists = [
-  "Recently Added",
-  "Recently Played",
-  "Top Songs",
-  "Top Albums",
-  "Top Artists",
-  "Logic Discography",
-  "Bedtime Beats",
-  "Feeling Happy",
-  "I miss Y2K Pop",
-  "Runtober",
-  "Mellow Days",
-  "Eminem Essentials",
-];
 
 const Page = () => {
   const router = useRouter();
@@ -34,7 +19,7 @@ const Page = () => {
 
   return (
     <div className={"h-full flex"}>
-      <Sidebar className="max-w-[25%]" playlists={playlists} />
+      <Sidebar className="max-w-[25%]" />
       <Chat
         loggedInUser={loggedInUser}
         messages={selectedUser.messages}
