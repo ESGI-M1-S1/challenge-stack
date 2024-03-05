@@ -1,17 +1,12 @@
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import Navlink from "@/components/navlink";
 
-interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
-  playlists: Array<string>;
-}
-
-export function Sidebar({ className, playlists }: SidebarProps) {
+export function Sidebar({ className }: { className?: string }) {
   return (
     <div className={cn("space-y-4 py-4", className)}>
-      <h2 className="mb-2 px-4 text-lg font-semibold tracking-tight">Chat</h2>
       <div className="px-3 py-2">
         <div className="space-y-1">
-          <Button variant="secondary" className="w-full justify-start">
+          <Navlink href="/my-profile" className="w-full justify-start">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -26,8 +21,8 @@ export function Sidebar({ className, playlists }: SidebarProps) {
               <circle cx="12" cy="7" r="4" />
             </svg>
             My profile
-          </Button>
-          <Button variant="ghost" className="w-full justify-start">
+          </Navlink>
+          <Navlink href="/schools" className="w-full justify-start">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -45,8 +40,8 @@ export function Sidebar({ className, playlists }: SidebarProps) {
               <path d="M19.1 4.9C23 8.8 23 15.1 19.1 19" />
             </svg>
             Schools
-          </Button>
-          <Button variant="ghost" className="w-full justify-start">
+          </Navlink>
+          <Navlink href="/students" className="w-full justify-start">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -64,8 +59,8 @@ export function Sidebar({ className, playlists }: SidebarProps) {
               <path d="M12 18H3" />
             </svg>
             Students
-          </Button>
-          <Button variant="ghost" className="w-full justify-start">
+          </Navlink>
+          <Navlink href="/classes" className="w-full justify-start">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -80,8 +75,8 @@ export function Sidebar({ className, playlists }: SidebarProps) {
               <path d="M12 18V2l7 4" />
             </svg>
             Classes
-          </Button>
-          <Button variant="ghost" className="w-full justify-start">
+          </Navlink>
+          <Navlink href="/courses" className="w-full justify-start">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -96,8 +91,8 @@ export function Sidebar({ className, playlists }: SidebarProps) {
               <circle cx="17" cy="7" r="5" />
             </svg>
             Courses
-          </Button>
-          <Button variant="ghost" className="w-full justify-start">
+          </Navlink>
+          <Navlink href="/exams" className="w-full justify-start">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -114,8 +109,8 @@ export function Sidebar({ className, playlists }: SidebarProps) {
               <path d="M4 4v16" />
             </svg>
             Exams
-          </Button>
-          <Button variant="ghost" className="w-full justify-start">
+          </Navlink>
+          <Navlink href="/settings" className="w-full justify-start">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -132,11 +127,11 @@ export function Sidebar({ className, playlists }: SidebarProps) {
               <path d="M4 4v16" />
             </svg>
             Settings
-          </Button>
+          </Navlink>
         </div>
       </div>
       <div className="px-3 py-2">
-        <Button variant="ghost" className="w-full justify-start">
+        <Navlink href="/log out" className="w-full justify-start">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -153,7 +148,7 @@ export function Sidebar({ className, playlists }: SidebarProps) {
             <path d="M4 4v16" />
           </svg>
           Log out
-        </Button>
+        </Navlink>
       </div>
     </div>
   );

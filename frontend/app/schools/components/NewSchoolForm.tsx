@@ -19,19 +19,22 @@ import {
 import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
-  email: z.string().min(2).max(50).email("Invalid email"),
-  password: z.string().min(8).max(50),
+  name: z.string().min(2).max(50),
+  image: z.string(),
 });
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
-export function UserLoginForm({ className, ...props }: UserAuthFormProps) {
+export function NewSchoolForm({
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLDivElement>) {
   const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      email: "",
-      password: "",
+      name: "",
+      image: "",
     },
   });
 
