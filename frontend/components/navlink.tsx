@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { Button, ButtonProps } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 
@@ -14,7 +14,6 @@ const Navlink = ({
   href: string;
 }) => {
   const pathname = usePathname();
-  console.log(pathname, href);
   return (
     <Link href={href ?? ""}>
       <Button
