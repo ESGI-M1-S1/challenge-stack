@@ -19,9 +19,9 @@ import {
 
 const formSchema = z.object({
   name: z.string().min(2).max(50),
-  image: z.any().refine((file) => {
+  image: z.any() /*.refine((file) => {
     return file instanceof File && file.type.startsWith("image/");
-  }, "Invalid file type"),
+  }, "Invalid file type"),*/,
 });
 
 export function NewSchoolForm({
@@ -83,10 +83,10 @@ export function NewSchoolForm({
                   <FormControl>
                     <Input
                       {...field}
-                      value={field.value.fileName ?? ""}
+                      /*                 value={field.value.fileName ?? ""}
                       onChange={(event) => {
                         field.onChange(event?.target?.files?.[0]);
-                      }}
+                      }}*/
                       type="file"
                     />
                   </FormControl>
