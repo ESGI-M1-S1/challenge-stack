@@ -1,9 +1,16 @@
 import { cn } from "@/lib/utils";
 import Navlink from "@/components/navlink";
+import Image from "next/image";
 
 export function Sidebar({ className }: { className?: string }) {
   return (
-    <div className={cn("space-y-4 py-4", className)}>
+    <div className={cn("space-y-4 py-4 border-r-2 border-solid border-gray-100", className)}>
+      <div className="px-3 pb-4 border-b-2 border-solid border-gray-100 flex items-center">
+        <img src="https://cdn-icons-png.flaticon.com/512/4675/4675250.png" alt="" className="w-10 h-10" />
+        <strong>
+          <h4 className="pl-4">Côme Bonal</h4>
+        </strong>
+      </div>
       <div className="px-3 py-2">
         <div className="space-y-1">
           <Navlink href="/my-profile" className="w-full justify-start">
