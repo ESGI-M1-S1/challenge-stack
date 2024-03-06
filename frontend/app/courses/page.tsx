@@ -5,12 +5,16 @@ import {
   Card,
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
 import React from "react";
+import { getAllCourses } from "@/modules/courses";
+import { Badge } from "@/components/ui/badge";
 
 const Page = () => {
+  const courses = getAllCourses();
   return (
     <div className={"container"}>
       <header className={"pt-5 w-full flex justify-between"}>
@@ -22,20 +26,26 @@ const Page = () => {
         </Link>
       </header>
       <section className={"pt-5"}>
-        <Card className="w-[350px]">
-          <CardHeader className={"py-5"}>
-            <div className={"rounded bg-blue-600 h-48"}></div>
-            <CardTitle>Symfony 7.0</CardTitle>
-            <CardDescription>
-              Learn the basics of Symfony 7.0 and how to build a web application
-            </CardDescription>
-          </CardHeader>
-          <CardContent className={"flex justify-center"}>
-            <Button>
-              <Label>See the details</Label>
-            </Button>
-          </CardContent>
-        </Card>
+        {courses.map((course) => (
+          <Card className="w-[350px]" key={course.id}>
+            <CardHeader>
+              <CardTitle>{course.name}</CardTitle>
+              <Badge className={"max-w-fit"}>
+                <Label>{course.difficulty}</Label>
+              </Badge>
+            </CardHeader>
+            <CardContent>
+              <CardDescription>{course.description}</CardDescription>
+            </CardContent>
+            <CardFooter className={"flex justify-center"}>
+              <Link href={`/courses/${course.id}`}>
+                <Button>
+                  <Label>See the details</Label>
+                </Button>
+              </Link>
+            </CardFooter>
+          </Card>
+        ))}
       </section>
     </div>
   );

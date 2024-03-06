@@ -25,3 +25,7 @@ export function getAllClasses(): Class[] {
     },
   ];
 }
+
+export function getClassById(id: string): Class | undefined {
+  return getAllClasses().find((c) => c.id === id);
+}
