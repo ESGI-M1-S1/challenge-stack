@@ -9,8 +9,10 @@ import {
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { getAllSchools } from "@/modules/schools";
 
-const Page = () => {
+const Page = async () => {
+  const schools = await getAllSchools();
   return (
     <div className={"container"}>
       <header className={"pt-5 w-full flex justify-between"}>
@@ -21,21 +23,20 @@ const Page = () => {
           </Button>
         </Link>
       </header>
-      <section className={"pt-5"}>
-        <Card className="w-[350px]">
-          <CardHeader className={"py-5"}>
-            <div className={"rounded bg-blue-600 h-48"}></div>
-            <CardTitle>Symfony 7.0</CardTitle>
-            <CardDescription>
-              Learn the basics of Symfony 7.0 and how to build a web application
-            </CardDescription>
-          </CardHeader>
-          <CardContent className={"flex justify-center"}>
-            <Button>
-              <Label>See the ressources</Label>
-            </Button>
-          </CardContent>
-        </Card>
+      <section className={"flex flex-wrap gap-4 pt-5"}>
+        {schools?.map((school) => (
+          <Card className="w-[350px]" key={school.id}>
+            <CardHeader className={"py-5"}>
+              <div className={"rounded bg-blue-600 h-48"}></div>
+              <CardTitle>{school.name}</CardTitle>
+            </CardHeader>
+            <CardContent className={"flex justify-center"}>
+              <Button variant={"secondary"} className={"w-full"}>
+                <Label>Edit</Label>
+              </Button>
+            </CardContent>
+          </Card>
+        ))}
       </section>
     </div>
   );

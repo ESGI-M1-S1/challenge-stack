@@ -16,20 +16,18 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
   name: z.string().min(2).max(50),
-  image: z.string(),
+  image: z.any() /*.refine((file) => {
+    return file instanceof File && file.type.startsWith("image/");
+  }, "Invalid file type"),*/,
 });
-
-interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export function NewSchoolForm({
   className,
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) {
-  const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -39,9 +37,23 @@ export function NewSchoolForm({
   });
 
   function onSubmit(data: z.infer<typeof formSchema>) {
-    //todo: implement login
+    //todo: implement form creation
     console.log(data);
-    router.push("/schools");
+    const body = {
+      nom: data.name,
+      logo: data.image,
+    };
+    fetch("/api/ecoles", {
+      method: "POST",
+      body: JSON.stringify(body),
+    })
+      .then((res) => {
+        console.log(res);
+        return res;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   return (
@@ -51,40 +63,42 @@ export function NewSchoolForm({
           <div className="grid gap-2">
             <FormField
               control={form.control}
-              name="email"
+              name={"name"}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email</FormLabel>
+                  <FormLabel>School&apos;s name</FormLabel>
                   <FormControl>
-                    <Input
-                      placeholder="name@example.com"
-                      type="email"
-                      {...field}
-                    />
+                    <Input {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
             <FormField
+              name={"image"}
               control={form.control}
-              name="password"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Password</FormLabel>
+                  <FormLabel>Image</FormLabel>
                   <FormControl>
                     <Input
-                      type="password"
-                      autoCapitalize="none"
-                      autoCorrect="off"
                       {...field}
+                      /*                 value={field.value.fileName ?? ""}
+                      onChange={(event) => {
+                        field.onChange(event?.target?.files?.[0]);
+                      }}*/
+                      type="file"
                     />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
-            <Button type={"submit"}>Login</Button>
+            <div className={"w-full flex justify-end"}>
+              <Button type={"submit"} className={"max-w-52"}>
+                Create new school
+              </Button>
+            </div>
           </div>
         </form>
       </Form>
