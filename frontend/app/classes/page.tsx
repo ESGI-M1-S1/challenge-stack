@@ -25,12 +25,14 @@ const Page = () => {
           <Card className="w-[350px]" key={classIterator.id}>
             <CardHeader className={"pt-5"}>
               <CardTitle>{classIterator.name}</CardTitle>
-              <Badge className={"pt-2 w-fit"}>
-                {
-                  schools.find((school) => {
-                    return school.id === classIterator.school;
-                  })?.name
-                }
+              <Badge className={"w-fit"}>
+                <Label>
+                  {
+                    schools.find((school) => {
+                      return school.id === classIterator.school;
+                    })?.name
+                  }
+                </Label>
               </Badge>
             </CardHeader>
             <CardFooter className={"flex justify-end"}>

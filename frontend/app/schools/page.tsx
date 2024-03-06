@@ -11,8 +11,8 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { getAllSchools } from "@/modules/schools";
 
-const Page = () => {
-  const schools = getAllSchools();
+const Page = async () => {
+  const schools = await getAllSchools();
   return (
     <div className={"container"}>
       <header className={"pt-5 w-full flex justify-between"}>

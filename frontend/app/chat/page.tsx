@@ -11,8 +11,8 @@ const Page = () => {
   const searchParams = useSearchParams();
   const userId = parseInt(searchParams.get("userId") ?? "2");
   const loggedInUserId = parseInt(searchParams.get("loggedInUserId") ?? "1");
-  if (!searchParams) {
-    router.replace(`/chat?userId=${userId}&loggedInUserId=${loggedInUserId}`);
+  if (!searchParams.has("userId") || !searchParams.has("loggedInUserId")) {
+    router.replace(`/chat?userId=${2}&loggedInUserId=${1}`);
   }
   const selectedUser = userData[userId - 1];
   const loggedInUser = userData[loggedInUserId - 1];

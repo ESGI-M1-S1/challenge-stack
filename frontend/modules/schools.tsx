@@ -7,17 +7,7 @@ export const schoolSchema = z.object({
 });
 export type School = z.infer<typeof schoolSchema>;
 
-export function getAllSchools(): School[] {
-  return [
-    {
-      id: "1",
-      name: "ESGI",
-      image: "https://randomuser.me/api/portraits",
-    },
-    {
-      id: "2",
-      name: "Sciences-U Campus Lyon",
-      image: "https://randomuser.me/api/portraits",
-    },
-  ];
+export async function getAllSchools(): Promise<School[]> {
+  const schools = fetch("http://localhost:8000/api/ecoles");
+  return schools.then((res) => res.json());
 }
