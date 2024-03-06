@@ -7,9 +7,9 @@ import { Badge } from "@/components/ui/badge";
 import { getAllClasses } from "@/modules/classes";
 import { getAllSchools } from "@/modules/schools";
 
-const Page = () => {
+const Page = async () => {
   const classes = getAllClasses();
-  const schools = getAllSchools();
+  const schools = await getAllSchools();
   return (
     <div className={"container"}>
       <header className={"pt-5 w-full flex justify-between"}>
@@ -28,7 +28,7 @@ const Page = () => {
               <Badge className={"w-fit"}>
                 <Label>
                   {
-                    schools.find((school) => {
+                    schools?.find((school) => {
                       return school.id === classIterator.school;
                     })?.name
                   }

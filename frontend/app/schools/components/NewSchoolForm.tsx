@@ -39,6 +39,21 @@ export function NewSchoolForm({
   function onSubmit(data: z.infer<typeof formSchema>) {
     //todo: implement form creation
     console.log(data);
+    const body = {
+      nom: data.name,
+      logo: data.image,
+    };
+    fetch("/api/ecoles", {
+      method: "POST",
+      body: JSON.stringify(body),
+    })
+      .then((res) => {
+        console.log(res);
+        return res;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   return (

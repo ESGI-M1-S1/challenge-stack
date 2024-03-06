@@ -14,12 +14,11 @@ export async function getAllSchools(): Promise<any> {
       console.error("Error fetching schools", error);
       return [];
     });
-  const result = data["hydra:member"]?.map((school: any) => {
+  return data?.["hydra:member"]?.map((school: any) => {
     return {
       id: school.id,
       name: school.nom,
       image: school.logo,
     };
   });
-  return result;
 }
