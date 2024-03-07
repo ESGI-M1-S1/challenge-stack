@@ -319,9 +319,9 @@ export  function NewQuizzForm({
             </Button>
 
             <div className={"w-full flex justify-end"}>
-      <AlertDialog>
-        <AlertDialogTrigger>
-            <Button type={"submit"} onClick={() => {
+          <AlertDialog>
+            <AlertDialogTrigger>
+              <Button type={"submit"} onClick={() => {
                 
                 const examenData = {
                   idCours: `api/courss/${coursId}`,

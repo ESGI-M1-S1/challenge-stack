@@ -24,17 +24,9 @@ class User
     #[ORM\Column(length: 255)]
     private ?string $mdp = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $pdp = null;
-
     #[ORM\Column]
     private array $roles = ["USER"];
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?Formateur $idFormateur = null;
-
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?Etudiant $idEtudiant = null;
 
     public function getId(): ?int
     {
@@ -84,17 +76,6 @@ class User
         return $this;
     }
 
-    public function getPdp(): ?string
-    {
-        return $this->pdp;
-    }
-
-    public function setPdp(string $pdp): static
-    {
-        $this->pdp = $pdp;
-
-        return $this;
-    }
 
     public function setRoles(array $roles): static
     {
