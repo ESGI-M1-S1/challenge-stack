@@ -23,7 +23,7 @@ class Examen
     #[ORM\OneToMany(targetEntity: Convocation::class, mappedBy: 'examen')]
     private Collection $idConvocation;
 
-    #[ORM\ManyToOne(inversedBy: 'examens')]
+    #[ORM\ManyToOne(targetEntity: Cours::class, inversedBy: 'examens')]
     private ?Cours $idCours = null;
 
     #[ORM\OneToMany(targetEntity: Questionnaire::class, mappedBy: 'idExamen')]

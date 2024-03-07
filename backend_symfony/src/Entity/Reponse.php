@@ -21,6 +21,9 @@ class Reponse
     #[ORM\ManyToOne(inversedBy: 'reponses')]
     private ?Question $idQuestion = null;
 
+    #[ORM\Column]
+    private ?bool $valide = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -53,6 +56,18 @@ class Reponse
     public function setIdQuestion(?Question $idQuestion): static
     {
         $this->idQuestion = $idQuestion;
+
+        return $this;
+    }
+
+    public function isValide(): ?bool
+    {
+        return $this->valide;
+    }
+
+    public function setValide(bool $valide): static
+    {
+        $this->valide = $valide;
 
         return $this;
     }

@@ -20,7 +20,10 @@ import {
 
 export default function MyProfil() {
     const [flipped, setFlipped] = useState(false);
-
+    const [isHovered, setIsHovered] = useState(false);
+    const hoverStyle = {
+        backgroundColor: '#ffffff',
+    };
   const handleClick = (e) => {
     e.preventDefault();
 
@@ -88,16 +91,18 @@ export default function MyProfil() {
             </svg>
         </span>
           </label>
-      <AlertDialog>
+        <AlertDialog>
         <AlertDialogTrigger>
         <button 
             id="save"
-            style={{  width: '125px', scale: '0.5', border: "3px solid #0f172a"}}
+            style={{  width: '125px', scale: '0.5', border: "3px solid #0f172a", ...(isHovered && hoverStyle)}}
             type="submit"
             value="Sauvegarder"
-            className="opacity-0 bg-emerald-400 hover:bg-white text-white -translate-y-24 px-4 py-2 rounded-full  cursor-pointer duration-500 ease-in-out mx-auto mb-4"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            className="opacity-0 bg-emerald-400  text-white -translate-y-24 px-4 py-2 rounded-full  cursor-pointer duration-500 ease-in-out mx-auto mb-4"
                 >
-            <svg  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+            <svg  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" >
               <path fill="##0f172a" d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" />
             </svg>
         </button>
