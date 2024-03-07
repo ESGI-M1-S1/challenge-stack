@@ -93,27 +93,6 @@ class User
         return array_unique($roles);
     }
 
-    public function getIdFormateur(): ?Formateur
-    {
-        return $this->idFormateur;
-    }
 
-    public function setIdFormateur(?Formateur $idFormateur): static
-    {
-        $this->idFormateur = $idFormateur;
 
-        return $this;
-    }
-
-    public function getIdEtudiant(): ?Etudiant
-    {
-        return $this->idEtudiant;
-    }
-
-    public function setIdEtudiant(?Etudiant $idEtudiant): static
-    {
-        $this->idEtudiant = $idEtudiant;
-
-        return $this;
-    }
 }
