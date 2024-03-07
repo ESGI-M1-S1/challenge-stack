@@ -24,7 +24,7 @@ const Page = async () => {
         </Link>
       </header>
       <section className={"flex flex-wrap gap-4 pt-5"}>
-        {schools?.map((school) => (
+        {schools.map((school) => (
           <Card className="w-[350px]" key={school.id}>
             <CardHeader className={"py-5"}>
               <div className={"rounded bg-blue-600 h-48"}></div>

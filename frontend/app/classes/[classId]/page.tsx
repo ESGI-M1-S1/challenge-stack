@@ -3,9 +3,9 @@ import { getClassById } from "@/modules/classes";
 import { getAllCourses } from "@/modules/courses";
 import CoursesTable from "@/app/classes/[classId]/components/CoursesTable";
 
-const Page = ({ params: { classId } }: { params: { classId: string } }) => {
+const Page = async ({ params: { classId } }: { params: { classId: string } }) => {
   const classe = getClassById(classId);
-  const courses = getAllCourses();
+  const courses = await getAllCourses();
   return (
     <div className={"container"}>
       <header className={"pt-5 w-full flex justify-between"}>

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { Course } from "@/modules/courses";
+import { Courses } from "@/modules/courses";
 import {
   Table,
   TableBody,
@@ -14,7 +14,7 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Checkbox } from "@/components/ui/checkbox";
 
-const CoursesTable = ({ courses }: { courses: Course[] }) => {
+const CoursesTable = ({ courses }: { courses: Courses[] }) => {
   const [selectedCourses, setSelectedCourses] = React.useState<string[]>([]);
   useEffect(() => {
     console.log("Selected courses", selectedCourses);
@@ -25,13 +25,13 @@ const CoursesTable = ({ courses }: { courses: Course[] }) => {
         <TableCaption>A list of your courses to assign</TableCaption>
         <TableHeader>
           <TableRow>
-            <TableHead>Assign</TableHead>
-            <TableHead>Name</TableHead>
-            <TableHead>Difficulty</TableHead>
+            <TableHead>Select</TableHead>
+            <TableHead>Matiere</TableHead>
+            <TableHead>Description</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
-          {courses.map((course) => {
+          {courses?.map((course) => {
             return (
               <TableRow key={course.id}>
                 <TableCell>
@@ -49,8 +49,8 @@ const CoursesTable = ({ courses }: { courses: Course[] }) => {
                     }}
                   />
                 </TableCell>
-                <TableCell>{course.name}</TableCell>
-                <TableCell>{course.difficulty}</TableCell>
+                <TableCell>{course.matiere}</TableCell>
+                <TableCell>{course.description}</TableCell>
               </TableRow>
             );
           })}

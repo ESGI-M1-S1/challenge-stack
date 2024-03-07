@@ -2,30 +2,56 @@ import { z } from "zod";
 
 export const coursesSchema = z.object({
   id: z.string(),
-  name: z.string(),
-  description: z.string().min(2).max(500),
-  duration: z.string().min(1).max(100),
-  difficulty: z.enum(["beginner", "intermediate", "advanced"]),
-  students: z.array(z.string()),
-  school: z.string(),
+  matiere: z.string(),
+  description: z.string(),
+  date_debut: z.date(),
+  date_fin: z.date(),
 });
+export type Courses = z.infer<typeof coursesSchema>;
 
-export type Course = z.infer<typeof coursesSchema>;
-
-export function getAllCourses(): Course[] {
-  return [
-    {
-      id: "1",
-      name: "Symfony 7.0",
-      students: ["1", "2"],
-      school: "1",
-      description: "Learn Symfony from scratch",
-      duration: "3",
-      difficulty: "beginner",
-    },
-  ];
+export async function getAllCourses(): Promise<any> {
+  const data = await fetch("http://localhost:8000/api/courss")
+    .then((res) => res.json())
+    .catch((error) => {
+      console.error("Error fetching cours", error);
+      return [];
+    });
+  return data?.["hydra:member"]?.map((courses: any) => {
+    return {
+      id: courses.id,
+      matiere: courses.matiere,
+      description: courses.description,
+      date_debut: new Date(courses.dateDebut),
+      date_fin: new Date(courses.dateFin),
+    };
+  });
 }
 
-export function getCourseById(id: string): Course | undefined {
-  return getAllCourses().find((c) => c.id === id);
+export async function getCoursById(id: string){
+  const courses = await getAllCourses();
+  return courses.find((c) => c.id == id);
+}
+
+
+export const studentssSchema = z.object({
+  id: z.string(),
+  nom: z.string(),
+  email: z.string(),
+});
+export type Students = z.infer<typeof studentssSchema>;
+
+export async function getAllStudents(): Promise<any> {
+  const data = await fetch("http://localhost:8000/api/users")
+    .then((res) => res.json())
+    .catch((error) => {
+      console.error("Error fetching cours", error);
+      return [];
+    });
+  return data?.["hydra:member"]?.map((students: any) => {
+    return {
+      id: students.id,
+      nom: students.nom,
+      email: students.email,
+    };
+  });
 }
