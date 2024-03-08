@@ -18,7 +18,6 @@ const StudentsTable = ({ students }: { students: any }) => {
   }, [selectedStudents]);
   return (
     <Table>
-      <TableCaption>A list of your courses to assign</TableCaption>
       <TableHeader>
         <TableRow>
           <TableHead>Select</TableHead>

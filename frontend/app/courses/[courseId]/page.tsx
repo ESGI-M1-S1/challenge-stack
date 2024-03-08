@@ -27,7 +27,9 @@ const Page = async ({
         </h4>
       </header>
       <section className={"pt-5"}>
+      <h1 className={"font-bold"}>Description de ce cours</h1>
         <h2 className={"pb-10"}>{course.description}</h2>
+        <h1 className={"font-bold"}>Ajout d'un élève à ce cours</h1>
         <StudentsTable students={students} />
       </section>
       <Link className={"pt-5 w-full flex"} href={"/courses/new"}>

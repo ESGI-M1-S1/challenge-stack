@@ -55,3 +55,26 @@ export async function getAllStudents(): Promise<any> {
     };
   });
 }
+
+export const classesSchema = z.object({
+  id: z.string(),
+  nom: z.string(),
+  logo: z.string(),
+});
+export type Classes = z.infer<typeof classesSchema>;
+
+export async function getAllClasses(): Promise<any> {
+  const data = await fetch("http://localhost:8000/api/classes")
+    .then((res) => res.json())
+    .catch((error) => {
+      console.error("Error fetching cours", error);
+      return [];
+    });
+  return data?.["hydra:member"]?.map((classes: any) => {
+    return {
+      id: classes.id,
+      nom: classes.nom,
+      logo: classes.logo,
+    };
+  });
+}

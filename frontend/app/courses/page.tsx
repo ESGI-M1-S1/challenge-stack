@@ -17,7 +17,7 @@ import { Badge } from "@/components/ui/badge";
 const Page = async () => {
   const courses = await getAllCourses();
   return (
-    <div className={"container"}>
+    <div className={"container mb-5"}>
       <header className={"pt-5 w-full flex justify-between"}>
         <h1 className={"text-4xl font-bold"}>Courses</h1>
         <Link href={"/courses/new"}>
@@ -28,18 +28,18 @@ const Page = async () => {
       </header>
       <section className={"pt-5"}>
         {courses?.map((course) => (
-          <Card className="w-[300px]" key={course.id}>
+          <Card className="w-[300px] mb-5" key={course.id}>
             <CardHeader>
               <CardTitle className={"mb-4"}>{course.matiere}</CardTitle>
               <Badge className={"max-w-fit"}>
-                <Label>Description du cours :</Label>
+                <Label>Description :</Label>
               </Badge>
               <CardDescription>{course.description}</CardDescription>
             </CardHeader>
             <CardFooter className={"flex justify-center"}>
               <Link href={`/courses/${course.id}`}>
                 <Button>
-                  <Label>Voir le détail du cours</Label>
+                  <Label>See</Label>
                 </Button>
               </Link>
             </CardFooter>
