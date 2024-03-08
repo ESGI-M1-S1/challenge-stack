@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+
 import {
   Form,
   FormControl,
@@ -94,10 +95,11 @@ export function UserLoginForm({ className, ...props }: UserAuthFormProps) {
                   const users = response.data['hydra:member']
                   const matchedUser = users.find((user) => user.email === email && user.mdp === password);
                   if (matchedUser) {
-                     router.push("/schools")
+                    sessionStorage.setItem('user', JSON.stringify(matchedUser.id));
+                    router.push("/schools")
                     }
                   else {
-                    alert("try again ! ")
+                    alert("Identifiant(s) Incorrect(s)")
                     }
                 })
                 .catch((error: any) => {

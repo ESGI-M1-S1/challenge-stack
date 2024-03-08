@@ -28,6 +28,7 @@ import axios from "axios";
 
 const formSchema = z
   .object({
+    nom: z.string().min(2).max(50),
     email: z.string().min(2).max(50),
     password: z.string().min(8).max(50),
     confirmPassword: z.string().min(8).max(50),
@@ -44,6 +45,7 @@ export function UserRegisterForm({ className, ...props }: UserAuthFormProps) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
+      nom: "",
       email: "",
       password: "",
       confirmPassword: "",
@@ -62,6 +64,23 @@ export function UserRegisterForm({ className, ...props }: UserAuthFormProps) {
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <div className="grid gap-2">
             <FormField
+              control={form.control}
+              name="nom"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Nom complet</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="John Doe"
+                      type="text"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          <FormField
               control={form.control}
               name="email"
               render={({ field }) => (
@@ -153,7 +172,8 @@ export function UserRegisterForm({ className, ...props }: UserAuthFormProps) {
               const userData = {
                   email: form.getValues().email,
                   mdp: form.getValues().password,
-                  roles: [form.getValues().role]
+                  roles: [form.getValues().role],
+                  nom: form.getValues().nom
                   }
               axios.post('http://127.0.0.1:8000/api/users', userData, {
                   headers: {
