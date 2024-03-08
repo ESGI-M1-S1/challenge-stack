@@ -49,7 +49,6 @@ export function UserRegisterForm({ className, ...props }: UserAuthFormProps) {
       email: "",
       password: "",
       confirmPassword: "",
-      role: "etudiant"
     },
   });
 
