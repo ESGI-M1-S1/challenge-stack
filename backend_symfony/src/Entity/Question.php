@@ -23,8 +23,7 @@ class Question
     #[ORM\ManyToOne(inversedBy: 'questions')]
     private ?Questionnaire $idQuestionnaire = null;
 
-    #[ORM\OneToMany(targetEntity: Reponse::class, mappedBy: 'idQuestion')]
-    private Collection $reponses;
+
 
     public function __construct()
     {

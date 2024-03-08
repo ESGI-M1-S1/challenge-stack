@@ -1,4 +1,5 @@
 import { z } from "zod";
+import axios from "axios";
 
 export const coursesSchema = z.object({
   id: z.string(),
