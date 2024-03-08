@@ -1,14 +1,26 @@
+'use client';
 import { cn } from "@/lib/utils";
 import Navlink from "@/components/navlink";
 import Image from "next/image";
+import { useEffect, useState } from "react";
+
 
 export function Sidebar({ className }: { className?: string }) {
+
+  const [username, setUsername] = useState<string | null>(null);
+
+  useEffect(() => {
+    // Access sessionStorage on the client side
+    const storedUsername = sessionStorage.getItem('username');
+    setUsername(storedUsername.substring(1, storedUsername.length - 1));
+  }, []);
+
   return (
     <div className={cn("space-y-4 py-4 border-r-2 border-solid border-gray-100", className)}>
       <div className="px-3 pb-4 border-b-2 border-solid border-gray-100 flex items-center">
         <img src="https://cdn-icons-png.flaticon.com/512/4675/4675250.png" alt="" className="w-10 h-10" />
         <strong>
-          <h4 className="pl-4">Côme Bonal</h4>
+          <h4 className="pl-4">{username}</h4>
         </strong>
       </div>
       <div className="px-3 py-2">

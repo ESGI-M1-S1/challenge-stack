@@ -37,6 +37,8 @@ export function UserLoginForm({ className, ...props }: UserAuthFormProps) {
     },
   });
   sessionStorage.removeItem('user')
+  sessionStorage.removeItem('username')
+
   function onSubmit(data: z.infer<typeof formSchema>) {
     //todo: implement login
     console.log(data);
@@ -96,6 +98,8 @@ export function UserLoginForm({ className, ...props }: UserAuthFormProps) {
                   const matchedUser = users.find((user) => user.email === email && user.mdp === password);
                   if (matchedUser) {
                     sessionStorage.setItem('user', JSON.stringify(matchedUser.id));
+                    sessionStorage.setItem('username', JSON.stringify(matchedUser.nom));
+
                     router.push("/schools")
                     }
                   else {
