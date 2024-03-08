@@ -43,8 +43,11 @@ export function NewSchoolForm({
       nom: data.name,
       logo: data.image,
     };
-    fetch("/api/ecoles", {
+    fetch("http://localhost:8000/api/ecoles", {
       method: "POST",
+      headers: {
+        'Content-Type': 'application/ld+json'
+      },
       body: JSON.stringify(body),
     })
       .then((res) => {

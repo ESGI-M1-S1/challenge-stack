@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
+
 import {
   Card,
   CardContent,
@@ -13,10 +14,10 @@ import React from "react";
 import { getAllCourses } from "@/modules/courses";
 import { Badge } from "@/components/ui/badge";
 
-const Page = () => {
-  const courses = getAllCourses();
+const Page = async () => {
+  const courses = await getAllCourses();
   return (
-    <div className={"container"}>
+    <div className={"container mb-5"}>
       <header className={"pt-5 w-full flex justify-between"}>
         <h1 className={"text-4xl font-bold"}>Courses</h1>
         <Link href={"/courses/new"}>
@@ -26,21 +27,19 @@ const Page = () => {
         </Link>
       </header>
       <section className={"pt-5"}>
-        {courses.map((course) => (
-          <Card className="w-[350px]" key={course.id}>
+        {courses?.map((course) => (
+          <Card className="w-[300px] mb-5" key={course.id}>
             <CardHeader>
-              <CardTitle>{course.name}</CardTitle>
+              <CardTitle className={"mb-4"}>{course.matiere}</CardTitle>
               <Badge className={"max-w-fit"}>
-                <Label>{course.difficulty}</Label>
+                <Label>Description :</Label>
               </Badge>
-            </CardHeader>
-            <CardContent>
               <CardDescription>{course.description}</CardDescription>
-            </CardContent>
+            </CardHeader>
             <CardFooter className={"flex justify-center"}>
               <Link href={`/courses/${course.id}`}>
                 <Button>
-                  <Label>See the details</Label>
+                  <Label>See</Label>
                 </Button>
               </Link>
             </CardFooter>

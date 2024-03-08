@@ -2,43 +2,36 @@ import React from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-import { Card, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardFooter, CardHeader, CardTitle,CardDescription } from "@/components/ui/card";
+import { getAllClasses } from "@/modules/courses";
 import { Badge } from "@/components/ui/badge";
-import { getAllClasses } from "@/modules/classes";
-import { getAllSchools } from "@/modules/schools";
 
 const Page = async () => {
-  const classes = getAllClasses();
-  const schools = await getAllSchools();
+  const classes = await getAllClasses();
   return (
-    <div className={"container"}>
+    <div className={"container mb-5"}>
       <header className={"pt-5 w-full flex justify-between"}>
         <h1 className={"text-4xl font-bold"}>Classes</h1>
-        <Link href={"/classes/new"}>
+        <Link href={"/courses/new"}>
           <Button>
             <Label>Add a class</Label>
           </Button>
         </Link>
       </header>
-      <section className={"pt-5 flex flex-wrap gap-3"}>
-        {classes.map((classIterator) => (
-          <Card className="w-[350px]" key={classIterator.id}>
-            <CardHeader className={"pt-5"}>
-              <CardTitle>{classIterator.name}</CardTitle>
-              <Badge className={"w-fit"}>
-                <Label>
-                  {
-                    schools?.find((school) => {
-                      return school.id === classIterator.school;
-                    })?.name
-                  }
-                </Label>
+      <section className={"pt-5"}>
+        {classes?.map((classe) => (
+          <Card className="w-[300px] mb-5" key={classe.id}>
+            <CardHeader>
+              <CardTitle className={"mb-4"}>{classe.nom}</CardTitle>
+              <Badge className={"max-w-fit"}>
+                <Label>Description :</Label>
               </Badge>
+              <CardDescription>{classe.logo}</CardDescription>
             </CardHeader>
-            <CardFooter className={"flex justify-end"}>
-              <Link href={`/classes/${classIterator.id}`}>
-                <Button variant={"secondary"} className={"w-full"}>
-                  <Label>See more</Label>
+            <CardFooter className={"flex justify-center"}>
+              <Link href={`/courses/${classe.id}`}>
+                <Button>
+                  <Label>See</Label>
                 </Button>
               </Link>
             </CardFooter>

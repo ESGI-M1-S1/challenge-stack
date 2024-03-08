@@ -3,31 +3,79 @@ import axios from "axios";
 
 export const coursesSchema = z.object({
   id: z.string(),
-  date_debut: z.string(),
-  date_fin: z.string().min(2).max(500),
-  matiere: z.string().min(1).max(100),
-  description: z.enum(["beginner", "intermediate", "advanced"]),
-  id_formateur: z.string()
+  matiere: z.string(),
+  description: z.string(),
+  date_debut: z.date(),
+  date_fin: z.date(),
 });
+export type Courses = z.infer<typeof coursesSchema>;
 
-export type Course = z.infer<typeof coursesSchema>;
-
-export async function getAllCourses(): Promise<Course[]> {
-  const response = await axios.get('http://127.0.0.1:8000/api/courss');
-  
-  return response.data['hydra:member'].map((cours: Course) => ({
-      id: cours.id,
-      date_debut: cours,
-      matiere: cours.matiere,
-    }));
+export async function getAllCourses(): Promise<any> {
+  const data = await fetch("http://localhost:8000/api/courss")
+    .then((res) => res.json())
+    .catch((error) => {
+      console.error("Error fetching cours", error);
+      return [];
+    });
+  return data?.["hydra:member"]?.map((courses: any) => {
+    return {
+      id: courses.id,
+      matiere: courses.matiere,
+      description: courses.description,
+      date_debut: new Date(courses.dateDebut),
+      date_fin: new Date(courses.dateFin),
+    };
+  });
 }
 
-export async function  getCourseById(id: string): Promise<Course[]>  {
-  const response = await axios.get(`http://127.0.0.1:8000/api/courss/${id}`);
-  
-  return response.data['hydra:member'].map((cours: Course) => ({
-      id: cours.id,
-      date_debut: cours,
-      matiere: cours.matiere,
-    }));
+export async function getCoursById(id: string){
+  const courses = await getAllCourses();
+  return courses.find((c) => c.id == id);
+}
+
+
+export const studentssSchema = z.object({
+  id: z.string(),
+  nom: z.string(),
+  email: z.string(),
+});
+export type Students = z.infer<typeof studentssSchema>;
+
+export async function getAllStudents(): Promise<any> {
+  const data = await fetch("http://localhost:8000/api/users")
+    .then((res) => res.json())
+    .catch((error) => {
+      console.error("Error fetching cours", error);
+      return [];
+    });
+  return data?.["hydra:member"]?.map((students: any) => {
+    return {
+      id: students.id,
+      nom: students.nom,
+      email: students.email,
+    };
+  });
+}
+
+export const classesSchema = z.object({
+  id: z.string(),
+  nom: z.string(),
+  logo: z.string(),
+});
+export type Classes = z.infer<typeof classesSchema>;
+
+export async function getAllClasses(): Promise<any> {
+  const data = await fetch("http://localhost:8000/api/classes")
+    .then((res) => res.json())
+    .catch((error) => {
+      console.error("Error fetching cours", error);
+      return [];
+    });
+  return data?.["hydra:member"]?.map((classes: any) => {
+    return {
+      id: classes.id,
+      nom: classes.nom,
+      logo: classes.logo,
+    };
+  });
 }
