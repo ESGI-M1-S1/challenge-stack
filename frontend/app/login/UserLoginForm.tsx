@@ -96,6 +96,7 @@ export function UserLoginForm({ className, ...props }: UserAuthFormProps) {
                   const matchedUser = users.find((user) => user.email === email && user.mdp === password);
                   if (matchedUser) {
                     sessionStorage.setItem('user', JSON.stringify(matchedUser.id));
+                    sessionStorage.setItem('username', JSON.stringify(matchedUser.nom));
                     router.push("/schools")
                     }
                   else {
