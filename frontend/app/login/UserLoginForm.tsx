@@ -37,6 +37,7 @@ export function UserLoginForm({ className, ...props }: UserAuthFormProps) {
     },
   });
   sessionStorage.removeItem('user')
+  sessionStorage.removeItem('username')
   function onSubmit(data: z.infer<typeof formSchema>) {
     //todo: implement login
     console.log(data);
