@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+
 import {
   Form,
   FormControl,
@@ -23,6 +24,17 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
 
 const formSchema = z.object({
   matiere: z.string().min(2).max(50),
@@ -128,9 +140,25 @@ export function NewCourseForm({
             )}
           />
             <div className={"w-full flex justify-end"}>
-              <Button type={"submit"} className={"max-w-52"}>
-                Create new cours
-              </Button>
+        <AlertDialog>
+          <AlertDialogTrigger>
+            <Button type={"submit"} className={"max-w-52"}>
+              Create new cours
+            </Button>
+          </AlertDialogTrigger>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Enregistrées !</AlertDialogTitle>
+              <AlertDialogDescription>
+              Vos données ont été correctement modififées
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogAction>Ok</AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
+
             </div>
           </div>
         </form>

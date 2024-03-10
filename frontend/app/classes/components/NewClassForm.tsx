@@ -33,6 +33,17 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
 import { Checkbox } from "@/components/ui/checkbox";
 import { useState } from "react";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -161,9 +172,24 @@ export function NewClassForm({
               </Table>
             </ScrollArea>
             <div className={"w-full flex justify-end"}>
-              <Button type={"submit"} className={"max-w-52"}>
-                Create new school
-              </Button>
+                      <AlertDialog>
+          <AlertDialogTrigger>
+            <Button type={"submit"} className={"max-w-52"}>
+              Create new school
+            </Button>
+          </AlertDialogTrigger>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Enregistrées !</AlertDialogTitle>
+              <AlertDialogDescription>
+              Vos données ont été correctement modififées
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogAction>Ok</AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
             </div>
           </div>
         </form>

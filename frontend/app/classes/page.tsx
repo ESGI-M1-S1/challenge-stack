@@ -12,7 +12,7 @@ const Page = async () => {
     <div className={"container mb-5"}>
       <header className={"pt-5 w-full flex justify-between"}>
         <h1 className={"text-4xl font-bold"}>Classes</h1>
-        <Link href={"/courses/new"}>
+        <Link href={"/classe/new"}>
           <Button>
             <Label>Add a class</Label>
           </Button>

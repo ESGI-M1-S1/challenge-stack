@@ -11,22 +11,16 @@ export type Student = z.infer<typeof studentSchema>;
 export function getAllStudents(): Student[] {
   return [
     {
-      id: "1",
-      name: "John Doe",
-      avatar: "https://randomuser.me/api/portraits",
-      email: "johndoe@gmail.com",
-    },
-    {
       id: "2",
-      name: "Jane Doe",
+      name: "Côme ",
       avatar: "https://randomuser.me/api/portraits",
-      email: "jan@deo.com",
+      email: "come.bonal@gmail.com",
     },
     {
       id: "3",
-      name: "Yapa Doe",
+      name: "Orian",
       avatar: "https://randomuser.me/api/portraits",
-      email: "ydoe@yopmail.com",
+      email: "orian.bonal@gmail.com",
     },
   ];
 }
